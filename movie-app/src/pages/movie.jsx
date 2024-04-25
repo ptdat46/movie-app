@@ -31,7 +31,7 @@ function Movie() {
                     </li>
                 </ul>
             </nav>
-            <div className="content-area">
+            <div className="content">
             {!!popularMovieList && 
                 <MoviesList title= "Popular" list = {popularMovieList.slice(0,8)}/>
             }

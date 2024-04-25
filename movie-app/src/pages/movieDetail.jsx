@@ -28,7 +28,8 @@ function MovieDetail() {
     return (
         <div>
             {!!movieDetail && <div style={{
-                backgroundImage: `url(https://image.tmdb.org/t/p/original/${movieDetail.backdrop_path})`, top: "0",
+                backgroundImage: `url(https://image.tmdb.org/t/p/original/${movieDetail.backdrop_path})`, 
+                top: "0",
                 left: "0",
                 bottom: "0",
                 right: "0",
@@ -53,21 +54,30 @@ function MovieDetail() {
                 </ul>
             </nav>
             {!!movieDetail &&
-                <div className="content-area">
+                <div className="content-detail">
                     <div className="poster-area">
                         <img className="movie-poster w-100 h-100" src={`https://image.tmdb.org/t/p/original/${movieDetail.poster_path}`} alt='movie'></img>
                         <button className="play-btn bg-danger">Xem phim</button>
                     </div>
                     <div className="detail-area">
-                        <h3 className="detail-name text-white">{movieDetail.title}</h3>
-                        <p className="detail-duration">{movieDetail.runtime} phút</p>
-                        <div className="detail-information">
-                            <span className="infor"><h6>Quốc gia:</h6>{movieDetail.origin_country}</span>
-                            <span className="infor"><h6>Ngôn ngữ:</h6>{movieDetail.spoken_languages[0].english_name}</span>
-                            <span className="infor"><h6>Ngày phát hành:</h6>{movieDetail.release_date}</span>
+                        <h1 className="detail-name text-white">{movieDetail.title}</h1>
+                        <div className="detail-information mt-3">
+                            <span className="infor">{movieDetail.runtime} minutes</span>
+                            <span className="infor">Nation: {movieDetail.origin_country}</span>
+                            <span className="infor">Language: {movieDetail.spoken_languages[0].english_name}</span>
+                            <span className="infor">Release date: {movieDetail.release_date}</span>
                             <span className="infor"></span>
                         </div>
-                        <div className="overview"><h6>Overview</h6>{movieDetail.overview}</div>
+                        <div className="overview mt-2">{movieDetail.overview}</div>
+                        <div className="actors">Actors
+                            <span className="actor-infor">
+                                <img className="actor-pic" src={``}></img>
+                            </span>
+                            <span className="actor-infor"></span>
+                            <span className="actor-infor"></span>
+                            <span className="actor-infor"></span>
+                            <span className="actor-infor"></span>
+                        </div>
                     </div>
                 </div>
             }

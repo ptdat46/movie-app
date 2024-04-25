@@ -17,7 +17,7 @@
     position: fixed;
     top: 0;
 }
-.content-area {
+.content {
     display: flex;
     align-items: center;
     justify-content: center;
