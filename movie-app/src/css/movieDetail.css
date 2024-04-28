@@ -1,5 +1,5 @@
 .content-detail {
-    margin: 80px 20px;
+    margin: 20px 20px;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -12,18 +12,22 @@
     position: fixed;
     top: 0;
     overflow: hidden;
+    font-weight: 600;
+    font-size: 1rem;
 }
 
 
 .poster-area {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     width: 25%;
 }
 
 .poster-area img {
     margin-bottom: 13px;
+    height: auto;
+    max-height: 410px;
 }
 
 .poster-area button {
@@ -45,16 +49,50 @@
     align-items: flex-start;
     font-size: 1.3rem;
 }
+
+.detail-name {
+    font-weight: 700;
+}
+
 span {
     display: block;
     line-height: 2rem;
     font-size: 1.3rem;
 }
 
+.genre {
+    text-decoration: none;
+    color: white;
+    padding: 0px 6px;
+    border-radius: 5px;
+    margin-left: 3px;
+}
+
+.genre:hover {
+    background-color: rgba(127, 127, 127, 0.8);
+}
+ 
 .overview {
     font-size: 1.2rem;
 }
 
 .play-btn {
     overflow: hidden;
+    background-color: #cd314b;
+}
+
+.play-btn:hover {
+    background-color: #a11b31;
+}
+.actors {
+    width: 100%;
+    margin: 1.3rem 0;
+}
+.actors-cards {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+    font-size: 1rem;
 }

@@ -9,26 +9,25 @@ const getPopularMovies = async () => {
 }
 
 getPopularMovies()
-  .then(data => 
-    router.get("/movie", function (req, res) {
-    res.json(data.results);
+  .then(data =>
+    router.get("/", function (req, res) {
+      res.json(data.results);
     })
-    );
+  );
 
 let movieid = ""
-router.post("/movie/:id", async function(req, res) {
-    movieid = req.body.id;
-    //console.log(movieid)
-    await axios.get(`https://api.themoviedb.org/3/movie/${movieid}?api_key=e9e9d8da18ae29fc430845952232787c&append_to_response=videos
-    `)
-      .then(
-        data => res.json(data.data)
-      )
-      .catch(error => console.log(error))
-    await axios.get(`http://api.themoviedb.org/3/movie/${movieid}/casts?api_key=e9e9d8da18ae29fc430845952232787c`)
-      .then(
-        data => 
-      )
+router.post("/:id", async function (req, res) {
+  movieid = req.body.id;
+  const [res1, res2] = await Promise.all([
+    axios.get(`https://api.themoviedb.org/3/movie/${movieid}?api_key=e9e9d8da18ae29fc430845952232787c&append_to_response=videos`),
+    axios.get(`http://api.themoviedb.org/3/movie/${movieid}/casts?api_key=e9e9d8da18ae29fc430845952232787c`),
+  ])
+  const combinedData = {
+    detail: res1.data,
+    actors: res2.data,
+  };
+
+  res.json(combinedData);
 })
 
 module.exports = router;

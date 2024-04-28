@@ -18,16 +18,16 @@ function Movie() {
     return (
         <div className="main-div">
             <nav className="header navbar navbar-dark bg-dark p-3 justify-content-start">
-                <a className="navbar-brand text-danger" href="/movie">PhimNew</a>
+                <a className="navbar-brand text-danger" href="/movie">FilmNew</a>
                 <ul className="nav nav-pills">
                     <li className="nav-item">
-                        <a className="nav-link text-light" href="/movie">Tìm kiếm</a>
+                        <a className="nav-link text-light" href="/movie">Search</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link text-light" href="/movie">Phim hot</a>
+                        <a className="nav-link text-light" href="/movie">Hot</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link text-light" href="/setting">Tài khoản</a>
+                        <a className="nav-link text-light" href="/setting">Account</a>
                     </li>
                 </ul>
             </nav>
@@ -35,7 +35,7 @@ function Movie() {
             {!!popularMovieList && 
                 <MoviesList title= "Popular" list = {popularMovieList.slice(0,8)}/>
             }
-            <a href="/popular-movie" style={{alignContent: "flex-end"}}>Xem thêm</a>
+            <a href="/popular-movie" style={{alignContent: "flex-end"}}>More</a>
             </div>
         </div>
     )

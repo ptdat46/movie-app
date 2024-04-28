@@ -19,7 +19,7 @@ app.use(cors());
 // 	console.log('Connected to sql server.')
 // })
 app.use('/', home);
-app.use('/', movie);
+app.use('/movie', movie);
 
 app.listen(5000, () => {
     console.log("server is listening on port 5000")
