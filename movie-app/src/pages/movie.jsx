@@ -32,8 +32,9 @@ function Movie() {
                 </ul>
             </nav>
             <div className="content">
+            <h3 className="text-danger p-3">Popular</h3>
             {!!popularMovieList && 
-                <MoviesList title= "Popular" list = {popularMovieList.slice(0,8)}/>
+                <MoviesList list = {popularMovieList.slice(0,12)}/>
             }
             <a href="/popular-movie" style={{alignContent: "flex-end"}}>More</a>
             </div>

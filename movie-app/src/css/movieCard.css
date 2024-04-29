@@ -3,6 +3,7 @@
     margin: 10px;
 }
 
+
 .movie-name {
     color: white;
     overflow: hidden;
@@ -10,6 +11,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     text-decoration: none;
+    font-size: 1.2rem;
 }
 
 .movie:hover {

@@ -2,19 +2,23 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axios from '../api/posts'
 import { useParams } from 'react-router';
+import { Link } from "react-router-dom";
 import '../css/movieDetail.css'
 import ActorCard from '../components/actorCard'
+import MoviesList from "../components/moviesList";
 
 function MovieDetail() {
     const { id } = useParams();
     const [movieDetail, setMovieDetail] = useState(undefined);
     const [actors, setActors] = useState(undefined);
+    const [similarMovies, setSimilarMovies] = useState(undefined);
 
     useEffect(() => {
         axios.post(`/movie/${id}`, { id })
             .then(res => {
                 setMovieDetail(res.data.detail)
                 setActors(res.data.actors.cast.slice(0,5))
+                setSimilarMovies(res.data.similar.results)
             })
             .catch(error => console.log(error))
     }, []);
@@ -61,7 +65,7 @@ function MovieDetail() {
                 <div className="content-detail">
                     <div className="poster-area">
                         <img className="movie-poster w-100" src={`https://image.tmdb.org/t/p/original/${movieDetail.poster_path}`} alt='movie'></img>
-                        <button className="play-btn">Watch</button>
+                        <Link to={`/watch/${id}`} className="play-btn">Watch</Link>
                     </div>
                     <div className="detail-area">
                         <h1 className="detail-name text-white">{movieDetail.title}</h1>
@@ -77,7 +81,8 @@ function MovieDetail() {
                             </span>
                         </div>
                         <div className="overview mt-2">{movieDetail.overview}</div>
-                        <div className="actors">Actors
+                        <div className="actors">
+                            <span className="fw-semibold">Actors</span>
                             {!!actors && !!actors.map &&
                             <div className="actors-cards">
                                 {actors.map((actor, index) => (
@@ -87,7 +92,8 @@ function MovieDetail() {
                             }
                         </div>
                         <div className="similar">
-
+                            <div className="fw-semibold">Similar</div>
+                            <MoviesList title= "similar" list = {similarMovies.slice(0,4)}/>
                         </div>
                     </div>
                 </div>

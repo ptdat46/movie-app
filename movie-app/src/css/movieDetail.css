@@ -30,15 +30,6 @@
     max-height: 410px;
 }
 
-.poster-area button {
-    font-weight: 500;
-    font-size: 20px;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 0px;
-}
-
 .detail-area {
     color: white;
     width: 65%;
@@ -79,6 +70,14 @@ span {
 .play-btn {
     overflow: hidden;
     background-color: #cd314b;
+    font-weight: 500;
+    font-size: 20px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 0px;
+    text-decoration: none;
+    text-align: center;
 }
 
 .play-btn:hover {
@@ -95,4 +94,10 @@ span {
     width: 100%;
     justify-content: space-around;
     font-size: 1rem;
+}
+
+.similar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }

@@ -6,6 +6,7 @@ import Home from './pages/home'
 import api from './api/posts'
 import Movie from './pages/movie'
 import MovieDetail from "./pages/movieDetail";
+import Watch from "./pages/watch";
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
           <Route path="/home" element={<Home/>}/>
           <Route path="/movie" element={<Movie/>}/>
           <Route path="/movie/:id" element={<MovieDetail/>}/>
+          <Route path="/watch/:id" element={<Watch/>}/>
         </Routes>
       </BrowserRouter>
     </div>

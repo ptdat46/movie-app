@@ -5,6 +5,7 @@ const app = express();
 const connection = require('./connect.js')
 const home = require('./routes/home.js')
 const movie = require('./routes/movie.js')
+const watch = require('./routes/watch.js')
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -20,6 +21,7 @@ app.use(cors());
 // })
 app.use('/', home);
 app.use('/movie', movie);
+app.use('/watch', watch);
 
 app.listen(5000, () => {
     console.log("server is listening on port 5000")
