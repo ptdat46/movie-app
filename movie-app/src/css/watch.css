@@ -13,3 +13,18 @@ iframe {
 hr {
     color: white !important;
 }
+.comment {
+    width: 100%;
+}
+.comment-area {
+    background-color: bisque;
+}
+.comment-input {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+textarea {
+    margin: 20px !important;
+    width: 90%;
+}

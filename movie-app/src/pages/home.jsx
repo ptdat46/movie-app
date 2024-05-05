@@ -30,7 +30,7 @@ function Home() {
     return (
         <div className="main-div">
             <div className="login-form">
-                <div className="form-title text-secondary">{isLoginForm ? "Đăng nhập" : "Đăng ký"}</div>
+                <div className="form-title text-secondary">{isLoginForm ? "Sign in" : "Sign up"}</div>
                 <div>
                     <form className="form text-white">
                         <div className="form-group text-white mb-2">
@@ -51,8 +51,8 @@ function Home() {
                                 value={rePassword} onChange={(event) => setRePassword(event.target.value)}
                             />
                         </div>}
-                        <button type="submit" className="btn btn-primary mb-2 w-100" onClick={handleLogin}><strong>{isLoginForm ? "Đăng nhập" : "Đăng ký"}</strong></button>
-                        <button className="toggle-btn" type="button" onClick={toggleLoginForm}>{isLoginForm ? "Đăng ký" : "Đăng nhập"}</button>
+                        <button type="submit" className="btn btn-primary mb-2 w-100" onClick={handleLogin}><strong>{isLoginForm ? "Sign in" : "Sign up"}</strong></button>
+                        <button className="toggle-btn" type="button" onClick={toggleLoginForm}>{isLoginForm ? "Sign up" : "Sign in"}</button>
                     </form>
                 </div>
             </div>

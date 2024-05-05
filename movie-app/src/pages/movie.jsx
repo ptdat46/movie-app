@@ -21,7 +21,7 @@ function Movie() {
                 <a className="navbar-brand text-danger" href="/movie">FilmNew</a>
                 <ul className="nav nav-pills">
                     <li className="nav-item">
-                        <a className="nav-link text-light" href="/movie">Search</a>
+                        <a className="nav-link text-light" href="/search">Search</a>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link text-light" href="/movie">Hot</a>

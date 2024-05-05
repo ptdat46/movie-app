@@ -7,6 +7,7 @@ import api from './api/posts'
 import Movie from './pages/movie'
 import MovieDetail from "./pages/movieDetail";
 import Watch from "./pages/watch";
+import Search from "./pages/search";
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="/movie" element={<Movie/>}/>
           <Route path="/movie/:id" element={<MovieDetail/>}/>
           <Route path="/watch/:id" element={<Watch/>}/>
+          <Route path="/search" element={<Search/>}/>
         </Routes>
       </BrowserRouter>
     </div>

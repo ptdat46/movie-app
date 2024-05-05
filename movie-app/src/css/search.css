@@ -1,0 +1,34 @@
+.main-search {
+    background-color: rgb(6,18,30);
+    min-height: 100vh;
+    height: 100%;
+}
+
+.search-box {
+    margin: 1.5rem;
+    display: flex;
+    align-items: center;
+    height: 3rem;
+}
+
+.search-btn {
+    overflow: hidden;
+    background-color: #cd314b;
+    border-radius: 0.4rem;
+    border: none;
+    height: 100%;
+    padding: 0rem 1rem;
+}
+
+.search-btn:hover {
+    background-color: #a11b31
+}
+
+.search-input {
+    width: 100%;
+    height: 100%;
+    border: white solid;
+    padding: 1rem 1.2rem;
+    border-radius: 0.4rem;
+}
+
