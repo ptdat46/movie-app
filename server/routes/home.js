@@ -1,9 +1,8 @@
 const express = require("express");
 const router = express.Router();
+const auth = require('../controllers/home')
 
 // Home page route.
-router.get("/home", function (req, res) {
-  res.json({"name": "pham tuan dat"});
-});
+router.post("/home", auth);
 
 module.exports = router;

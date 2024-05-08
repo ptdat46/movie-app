@@ -24,7 +24,7 @@ function Movie() {
                         <a className="nav-link text-light" href="/search">Search</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link text-light" href="/movie">Hot</a>
+                        <a className="nav-link text-light" href="/movie">Genres</a>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link text-light" href="/setting">Account</a>
