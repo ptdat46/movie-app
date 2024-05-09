@@ -8,10 +8,11 @@ import CommentCard from "../components/commentCard";
 
 function Watch() {
     const { id } = useParams();
-    const [trailerId, setTrailerId] = useState('');
+    const [source, setSourceId] = useState('');
     useEffect(() => {
         axios.post(`/watch/${id}`, { id })
-            .then(res => setTrailerId(res.data.results[0].key))
+            .then(res => setSourceId(res.data))
+            //res.data.results[0].key
             .catch(error => console.log(error))
     }, [])
     return (
@@ -37,7 +38,7 @@ function Watch() {
                 msallowfullscreen="msallowfullscreen"
                 oallowfullscreen="oallowfullscreen"
                 webkitallowfullscreen="webkitallowfullscreen"
-                src={`https://youtube.com/embed/${trailerId}?autoplay=0`}>
+                src={`${source}`}>
             </iframe>
             <div className="comment">
                 <hr />
