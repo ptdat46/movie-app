@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import '../css/movieDetail.css'
 import ActorCard from '../components/actorCard'
 import MoviesList from "../components/moviesList";
+import Auth from "../components/auth";
 
 function MovieDetail() {
     const { id } = useParams();
@@ -35,6 +36,7 @@ function MovieDetail() {
 
     return (
         <div>
+            <Auth/>
             {!!movieDetail && <div style={{
                 backgroundImage: `url(https://image.tmdb.org/t/p/original/${movieDetail.backdrop_path})`,
                 top: "0",

@@ -5,6 +5,7 @@ import { useParams } from 'react-router';
 import YouTube from 'react-youtube'
 import '../css/watch.css'
 import CommentCard from "../components/commentCard";
+import Auth from "../components/auth";
 
 function Watch() {
     const { id } = useParams();
@@ -17,6 +18,7 @@ function Watch() {
     }, [])
     return (
         <div className="movie-watch">
+            <Auth/>
             <nav className="header navbar navbar-dark bg-dark p-3 justify-content-start mb-3">
                 <a className="navbar-brand text-danger" href="/movie">FilmNew</a>
                 <ul className="nav nav-pills">

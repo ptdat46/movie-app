@@ -4,6 +4,7 @@ import axios from '../api/posts'
 import { Link } from "react-router-dom";
 import '../css/search.css'
 import MoviesList from "../components/moviesList";
+import Auth from "../components/auth";
 
 function Search() {
     const [searchQuery, setSearchQuery] = useState("");
@@ -15,6 +16,7 @@ function Search() {
     }
     return (
         <div className="main-search">
+            <Auth/>
             <nav className="header navbar navbar-dark bg-dark p-3 justify-content-start">
                 <a className="navbar-brand text-danger" href="/movie">FilmNew</a>
                 <ul className="nav nav-pills">

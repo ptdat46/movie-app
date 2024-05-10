@@ -3,6 +3,6 @@ const router = express.Router();
 const auth = require('../controllers/home')
 
 // Home page route.
-router.post("/home", auth);
+router.post("/", auth);
 
 module.exports = router;

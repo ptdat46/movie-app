@@ -41,12 +41,13 @@ function Home() {
         event.preventDefault()
         let check = isValidForm();
         if (check) {
-            axios.post('/home', user)
+            axios.post('/', user)
             .then(res => {
                 if (res.data === "login successful") {
                     setLoginSuccess(true);
                     history.push('/movie');
                     window.location.reload();
+                    localStorage.setItem("user", user.email);
                 } else {
                     alert(res.data);
                 }

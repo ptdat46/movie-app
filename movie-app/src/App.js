@@ -15,15 +15,13 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
         <Routes>
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/movie" element={<Movie />} />
           <Route path="/movie/:id" element={<MovieDetail />} />
           <Route path="/watch/:id" element={<Watch />} />
           <Route path="/search" element={<Search />} />
         </Routes>
-      </BrowserRouter>
     </div>
   );
 }

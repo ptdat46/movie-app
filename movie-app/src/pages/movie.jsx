@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import axios from '../api/posts'
 import '../css/movie.css'
 import MoviesList from "../components/moviesList";
+import { Navigate } from "react-router-dom";
+import Auth from "../components/auth";
 
 function Movie() {
     const [popularMovieList, setPopularMovieList] = useState(undefined);
@@ -17,6 +19,7 @@ function Movie() {
 
     return (
         <div className="main-div">
+            <Auth/>
             <nav className="header navbar navbar-dark bg-dark p-3 justify-content-start">
                 <a className="navbar-brand text-danger" href="/movie">FilmNew</a>
                 <ul className="nav nav-pills">
