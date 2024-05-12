@@ -48,7 +48,20 @@ const loadComments = (req, res) => {
 
 const updateComment = (req, res) => {
     let values = req.body;
-
+    const query = `insert into comments (user_id, movie_id, content) values ("${values.user_id}", "${values.movie_id}", "${values.content}");`;
+    connection.query(query, (err, data) => {
+        if(err) { 
+            return res.json("Error when insert data in dtb");
+        }
+      })
+    const query2 = `SELECT user_id, content, created, email FROM movie_app.comments join movie_app.users where user_id = users.id 
+    and movie_id = "${values.movie_id}" and content = "${values.content}" and user_id = "${values.user_id}"`;
+    connection.query(query2, (err, data) => {
+        if(err) {
+            return console.log("Error when load comment")
+        }
+        else return res.json(data);
+    })
 }
 
 module.exports = { loadSource, updateSource, loadComments, updateComment }

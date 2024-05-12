@@ -12,7 +12,7 @@ function Watch() {
     const { id } = useParams();
     const [source, setSourceId] = useState('');
     const [sourceURL, setSourceURL] = useState('');
-    const [commentsList, setCommentsList] = useState(undefined);
+    const [commentsList, setCommentsList] = useState([]);
     const [comment, setComment] = useState("");
     var isAdmin = false;
 
@@ -24,7 +24,6 @@ function Watch() {
 
         axios.get(`/watch/${id}/comments`)
             .then(res => {
-                console.log(res.data)
                 setCommentsList(res.data)
             })
             .catch(err => console.log(err))
@@ -42,12 +41,12 @@ function Watch() {
     const handleSendComment= () => {
         const values = {
             user_id: localStorage.getItem("user_id"),
-            comment: comment,
-            movie_id: id
+            movie_id: id,
+            content: comment,
         }
         axios.post(`/watch/${id}/comments`, values)
             .then(res => {
-                console.log(res.data)
+                setCommentsList([...commentsList, ...res.data])               
             })
             .catch(err => console.log(err))
     }
@@ -84,9 +83,10 @@ function Watch() {
                     <CommentsList list={commentsList} />
                     <div className="comment-input my-2">
                         <div className="input-area">
-                            <textarea placeholder="Comment here" maxLength="380" rows="4"></textarea>
+                            <textarea placeholder="Comment here" maxLength="380" rows="4"
+                            onChange={(event) => setComment(event.target.value)}></textarea>
                             <input className="send-btn bg-danger text-white border-0" type="submit" name="send" value="Send" 
-                                onChange={(event) => setComment(event.target.value)} onClick={handleSendComment}/>
+                            onClick={handleSendComment}/>
                         </div>
                         <div className="text-danger">Like this movie?
                             <div>Like</div>

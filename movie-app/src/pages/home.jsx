@@ -42,16 +42,15 @@ function Home() {
         if (check) {
             axios.post('/', user)
             .then(res => {
-                console.log(res.data);
-                // if (res.data === "login successful") {
-                //     setLoginSuccess(true);
-                //     history.push('/movie');
-                //     window.location.reload();
-                //     localStorage.setItem("user", user.email);
-                //     localStorage.setItem("user_id", )
-                // } else {
-                //     alert(res.data);
-                // }
+                if (res.data[0].email != undefined) {
+                    setLoginSuccess(true);
+                    history.push('/movie');
+                    window.location.reload();
+                    localStorage.setItem("user", user.email);
+                    localStorage.setItem("user_id", res.data[0].id)
+                } else {
+                    alert(res.data);
+                }
             }
             )
             .catch(err => console.log(err))
