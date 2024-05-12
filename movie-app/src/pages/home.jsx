@@ -4,7 +4,6 @@ import axios from '../api/posts'
 import '../css/home.css'
 import { Link } from "react-router-dom";
 import { history } from "../config/history";
-import { toast } from "react-toastify";
 
 function Home() {
     const [email, setEmail] = useState("");

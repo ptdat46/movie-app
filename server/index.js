@@ -8,6 +8,7 @@ const home = require('./routes/home.js')
 const movie = require('./routes/movie.js')
 const watch = require('./routes/watch.js')
 const search = require('./routes/search.js')
+const admin = require('./routes/admin.js')
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -26,6 +27,8 @@ app.use('/', home);
 app.use('/movie', movie);
 app.use('/watch', watch);
 app.use('/search', search);
+app.use('/', admin)
+
 
 app.listen(5000, () => {
     console.log("server is listening on port 5000")

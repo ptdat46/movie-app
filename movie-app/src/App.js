@@ -8,7 +8,7 @@ import Movie from './pages/movie'
 import MovieDetail from "./pages/movieDetail";
 import Watch from "./pages/watch";
 import Search from "./pages/search";
-import { ToastContainer } from 'react-toastify';
+import Admin from "./pages/admin";
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
@@ -21,6 +21,7 @@ function App() {
           <Route path="/movie/:id" element={<MovieDetail />} />
           <Route path="/watch/:id" element={<Watch />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/admin" element={<Admin/>} />
         </Routes>
     </div>
   );
