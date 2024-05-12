@@ -1,0 +1,19 @@
+.comment-card {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.3rem;
+    color: white;
+}
+
+.email-content {
+    display: inline-block;
+    line-height: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.comment-created {
+    margin: 0;
+    font-size: 0.6rem;
+}

@@ -11,7 +11,7 @@ const auth = (req, res) => {
                 return res.json("query error");
             }
             if(data.length > 0) {
-                return res.json("login successful")               
+                return res.json(data)               
             } else {
                 return res.json("Incorrect email or password. Try again!")
             }

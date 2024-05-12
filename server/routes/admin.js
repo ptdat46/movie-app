@@ -4,6 +4,6 @@ const axios = require('axios');
 const {usersList, Delete} = require('../controllers/admin');
 
 router.get("/admin", usersList);
-router.post("/admin", Delete)
+router.post("/admin", Delete);
 
 module.exports = router;

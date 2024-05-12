@@ -42,14 +42,16 @@ function Home() {
         if (check) {
             axios.post('/', user)
             .then(res => {
-                if (res.data === "login successful") {
-                    setLoginSuccess(true);
-                    history.push('/movie');
-                    window.location.reload();
-                    localStorage.setItem("user", user.email);
-                } else {
-                    alert(res.data);
-                }
+                console.log(res.data);
+                // if (res.data === "login successful") {
+                //     setLoginSuccess(true);
+                //     history.push('/movie');
+                //     window.location.reload();
+                //     localStorage.setItem("user", user.email);
+                //     localStorage.setItem("user_id", )
+                // } else {
+                //     alert(res.data);
+                // }
             }
             )
             .catch(err => console.log(err))

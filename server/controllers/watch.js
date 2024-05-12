@@ -35,5 +35,20 @@ const updateSource = (req, res) => {
       })
 }
 
+const loadComments = (req, res) => {
+    let movieId = req.params.id;
+    const query = `SELECT user_id, content, created, email FROM movie_app.comments join movie_app.users where user_id = users.id and movie_id = "${movieId}"`;
+    connection.query(query, (err, data) => {
+        if(err) console.log(err);
+        else {
+            res.json(data);
+        }
+    })
+}
 
-module.exports = { loadSource, updateSource }
+const updateComment = (req, res) => {
+    let values = req.body;
+
+}
+
+module.exports = { loadSource, updateSource, loadComments, updateComment }

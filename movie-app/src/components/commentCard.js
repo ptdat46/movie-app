@@ -1,11 +1,12 @@
-
+import '../css/commentCard.css'
 
 const CommentCard = (props) => {
-    const { user, content } = props;
+    const { email, content, created } = props;
     return (
         <div className="comment-card">
-            <span>{user}: </span>
-            <span>{content}</span>
+            <p className="email-content">{email}: {content}</p>
+            <p className="comment-created">{created}</p>
+            <hr className='m-1'/>
         </div>
     )
 }

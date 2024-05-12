@@ -17,14 +17,41 @@ hr {
     width: 100%;
 }
 .comment-area {
-    background-color: bisque;
+    padding: 0.1rem;
+    flex-wrap: wrap;
 }
+
+.comments-list {
+    width: 100%;
+}
+
 .comment-input {
     width: 100%;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    
+    
+} 
+
+.input-area {
+    width: 100%;
+    display: inline-block;
+    position: relative;
 }
+
 textarea {
-    margin: 20px !important;
-    width: 90%;
+    color: white;
+    display: block;
+    padding: 0.5rem;
+    width: 100%;
+    background: rgba(128,128,128, 0.4);
+}
+
+.send-btn {
+    font-weight: 500;
+    position: absolute;
+    border-radius: 0.1rem;
+    bottom: 10px;
+    right: 10px;
+    padding: 8px 20px;
 }

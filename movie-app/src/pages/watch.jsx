@@ -5,27 +5,49 @@ import { useParams } from 'react-router';
 import YouTube from 'react-youtube'
 import '../css/watch.css'
 import CommentCard from "../components/commentCard";
+import CommentsList from "../components/commentsList";
 import Auth from "../components/auth";
 
 function Watch() {
     const { id } = useParams();
     const [source, setSourceId] = useState('');
     const [sourceURL, setSourceURL] = useState('');
+    const [commentsList, setCommentsList] = useState(undefined);
+    const [comment, setComment] = useState("");
     var isAdmin = false;
 
-    if (localStorage.getItem("user") === "admin@admin.com") {isAdmin = true}
+    if (localStorage.getItem("user") === "admin@admin.com") { isAdmin = true }
     useEffect(() => {
         axios.post(`/watch/${id}`, { id })
             .then(res => setSourceId(res.data))
-            //res.data.results[0].key
             .catch(error => console.log(error))
+
+        axios.get(`/watch/${id}/comments`)
+            .then(res => {
+                console.log(res.data)
+                setCommentsList(res.data)
+            })
+            .catch(err => console.log(err))
     }, [])
 
     const handleUpdate = () => {
-        axios.post(`/watch/${id}/update`, {id, sourceURL})
+        axios.post(`/watch/${id}/update`, { id, sourceURL })
             .then(res => {
                 alert(res.data);
                 window.location.reload();
+            })
+            .catch(err => console.log(err))
+    }
+
+    const handleSendComment= () => {
+        const values = {
+            user_id: localStorage.getItem("user_id"),
+            comment: comment,
+            movie_id: id
+        }
+        axios.post(`/watch/${id}/comments`, values)
+            .then(res => {
+                console.log(res.data)
             })
             .catch(err => console.log(err))
     }
@@ -57,30 +79,35 @@ function Watch() {
             </iframe>
             <div className="comment">
                 <hr />
-                <div className="comment-title text-white fw-semibold p-2">Comment</div>
-                <div className="comment-area d-flex align-items-center m-3 flex-column">
-                    <div className="comments-list">
-                        <CommentCard user="Ptdat" content="Phim hay xuất sắc lmao lmao bruh bruh" />
-                    </div>
-                    <div className="comment-input">
-                        <textarea placeholder="Comment here" maxLength="400" rows="4"></textarea>
-                        <input type="submit" name="send" value="send" />
+                <div className="comment-title text-white fw-semibold p-1">Comment</div>
+                <div className="comment-area d-flex align-items-center mx-2 flex-column">
+                    <CommentsList list={commentsList} />
+                    <div className="comment-input my-2">
+                        <div className="input-area">
+                            <textarea placeholder="Comment here" maxLength="380" rows="4"></textarea>
+                            <input className="send-btn bg-danger text-white border-0" type="submit" name="send" value="Send" 
+                                onChange={(event) => setComment(event.target.value)} onClick={handleSendComment}/>
+                        </div>
+                        <div className="text-danger">Like this movie?
+                            <div>Like</div>
+                            <div>Dislike</div>
+                        </div>
                     </div>
                 </div>
             </div>
             {isAdmin && <form className="text-white p-2">
-                    <h5>Add source video for movie</h5>
-                    <div class="mb-2 d-flex">
-                        <label class="form-label">Movie Id</label>
-                        <input type="text" class="form-control" value={id} />
-                    </div>
-                    <div class="mb-2 d-flex">
-                        <label class="form-label">Movie Source URL</label>
-                        <input type="text" class="form-control" placeholder="Fill the URL here" 
-                            onChange={(event) => setSourceURL(event.target.value)}/>
-                    </div>
-                    <button type="button" class="btn btn-danger" onClick={handleUpdate}>Save</button>
-                </form>
+                <h5>Add source video for movie</h5>
+                <div class="mb-2 d-flex">
+                    <label class="form-label">Movie Id</label>
+                    <input type="text" class="form-control" value={id} />
+                </div>
+                <div class="mb-2 d-flex">
+                    <label class="form-label">Movie Source URL</label>
+                    <input type="text" class="form-control" placeholder="Fill the URL here"
+                        onChange={(event) => setSourceURL(event.target.value)} />
+                </div>
+                <button type="button" class="btn btn-danger" onClick={handleUpdate}>Save</button>
+            </form>
             }
         </div>
     )
