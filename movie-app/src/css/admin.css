@@ -43,3 +43,17 @@ ul .active {
     height: 100%;
 }
 
+.movie-content {
+    width: 90%;
+    height: 95%;
+    padding: 1rem;
+    overflow-y: scroll;
+}
+
+h4 {
+    overflow: hidden;
+}
+
+.form-label {
+    flex: 25%;
+}

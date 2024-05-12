@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from '../api/posts'
 import "../css/admin.css"
 import UserCard from '../components/admin.userCard';
+import Search from "./search";
 
 function Admin() {
     const img = {
@@ -31,7 +32,7 @@ function Admin() {
                         <a className="nav-link text-light">User</a>
                     </li>
                     <li className={`nav-item movie-comp ${!isUserForm ? "active" : ""}`} onClick={toggleForm}>
-                        <a className="nav-link text-light ">Movies</a>
+                        <a className="nav-link text-light ">Search</a>
                     </li>
                 </ul>
             </nav>
@@ -44,19 +45,19 @@ function Admin() {
                                 <th scope="col">Email</th>
                                 <th scope="col">Password</th>
                                 <th scope="col">Delete</th>
-                                <th scope="col"><img src ={ require("../public/refresh.png")} onClick={() => window.location.reload()} style={img}/></th>
+                                <th scope="col"><img src={require("../public/refresh.png")} onClick={() => window.location.reload()} style={img} /></th>
                             </tr>
                         </thead>
                         <tbody>
                             {!!usersList && usersList.map((user, index) => (
-                                <UserCard user={user} key = {index}/>
+                                <UserCard user={user} key={index} />
                             ))}
                         </tbody>
                     </table>
                 </div>}
-                {!isUserForm && 
+                {!isUserForm &&
                     <div className="movie-content bg-dark">
-                        
+                        <Search/>
                     </div>
                 }
             </div>
