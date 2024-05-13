@@ -15,7 +15,7 @@ const loadSource = async (req, res) => {
     const data = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=e9e9d8da18ae29fc430845952232787c`)
     if (queryData.length > 0 && queryData[0].status == "completed") {
         res.json(queryData[0].source_url);
-    } else if (data != undefined) res.json(`https://youtube.com/embed/${data.data.results[0].key}?autoplay=0;`);
+    } else res.json(`https://youtube.com/embed/${data.data.results[0].key}?autoplay=0;`);
 }
 
 const updateSource = (req, res) => {
@@ -95,8 +95,9 @@ const addFavourite = (req, res) => {
                     }
                     return res.json("Successfully add this movie to your favourite")
                 })
-            } else res.json("Trailer video can not be added to favourite list")
+            }
         }
+        else res.json("Trailer video can not be added to favourite list")
     })
 
 }
