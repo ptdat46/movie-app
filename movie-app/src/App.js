@@ -11,6 +11,7 @@ import Search from "./pages/search";
 import Admin from "./pages/admin";
 import Genres from "./pages/genres";
 import 'react-toastify/dist/ReactToastify.css';
+import Account from "./pages/account";
 
 function App() {
 
@@ -20,10 +21,11 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/movie" element={<Movie />} />
           <Route path="/movie/:id" element={<MovieDetail />} />
-          <Route path="/watch/:id" element={<Watch />} />
+          <Route path="/watch/:id/:name" element={<Watch />} />
           <Route path="/search" element={<Search />} />
           <Route path="/admin" element={<Admin/>} />
           <Route path="/genres" element={<Genres/>}/>
+          <Route path="/account" element={<Account/>}/>
         </Routes>
     </div>
   );

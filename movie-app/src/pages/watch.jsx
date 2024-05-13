@@ -10,8 +10,8 @@ import Auth from "../components/auth";
 import Navbar from "../components/navbar";
 
 function Watch() {
-    const { id } = useParams();
-    const [source, setSourceId] = useState('');
+    const { id, name } = useParams();
+    const [source, setSource] = useState('');
     const [sourceURL, setSourceURL] = useState('');
     const [commentsList, setCommentsList] = useState([]);
     const [comment, setComment] = useState("");
@@ -20,7 +20,9 @@ function Watch() {
     if (localStorage.getItem("is_admin") === "1") { isAdmin = true }
     useEffect(() => {
         axios.post(`/watch/${id}`, { id })
-            .then(res => setSourceId(res.data))
+            .then(res => {
+                setSource(res.data)
+            })
             .catch(error => console.log(error))
 
         axios.get(`/watch/${id}/comments`)
@@ -30,8 +32,8 @@ function Watch() {
             .catch(err => console.log(err))
     }, [])
 
-    const handleUpdate = () => {
-        axios.post(`/watch/${id}/update`, { id, sourceURL })
+    const handleUpdateMovie = () => {
+        axios.post(`/watch/${id}/update`, { id, name, sourceURL })
             .then(res => {
                 alert(res.data);
                 window.location.reload();
@@ -52,6 +54,16 @@ function Watch() {
             .catch(err => console.log(err))
         setComment("");
     }
+
+    const handleFavourite= () => {
+        const values = {
+            user_id: localStorage.getItem("user_id"),
+            movie_id: id,
+        }
+        axios.post(`/watch/${id}/favourite`, values)
+            .then(res => alert(res.data))
+            .catch(err => console.log(err))
+    }
     return (
         <div className="movie-watch">
             <Auth />
@@ -65,9 +77,10 @@ function Watch() {
                 webkitallowfullscreen="webkitallowfullscreen"
                 src={`${source}`}>
             </iframe>
-            <div>Add to favourite</div>
+            <button className="btn btn-danger mx-3" onClick={handleFavourite}>Add to favourite</button>
+            <p className="favourite-alert text-white">You can only add completed movie to favourite list</p>
             <div className="comment">
-                <hr />
+                <hr className="mt-0"/>
                 <div className="comment-title text-white fw-semibold p-1">Comment</div>
                 <div className="comment-area d-flex align-items-center mx-2 flex-column">
                     <CommentsList list={commentsList} id = {id}/>
@@ -93,7 +106,7 @@ function Watch() {
                     <input type="text" class="form-control" placeholder="Fill the URL here"
                         onChange={(event) => setSourceURL(event.target.value)} />
                 </div>
-                <button type="button" class="btn btn-danger" onClick={handleUpdate}>Save</button>
+                <button type="button" class="btn btn-danger" onClick={handleUpdateMovie}>Save</button>
             </form>
             }
         </div>

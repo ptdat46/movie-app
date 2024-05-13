@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import axios from '../api/posts'
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { history } from "../config/history";
 import Auth from "../components/auth";
 import Navbar from "../components/navbar";
@@ -30,7 +30,7 @@ function Genres() {
         })
         .catch(err => console.log(err))
     }, [isActive])
-    
+
     return (
         <div className="genres-main-div">
             <Auth/>
@@ -62,8 +62,8 @@ function Genres() {
                 <div className="genre-item"><button id="37" className={isActive.active === "37" ? "active" : ""} onClick={handleGenre}>Western</button></div>
                 </div>
             </div>
-            {!!moviesList && 
-                <MoviesList list = {moviesList.slice(0,16)}/>
+            {!!moviesList &&
+                <MoviesList list = {moviesList.slice(0, 40)}/>
             }
         </div>
     )

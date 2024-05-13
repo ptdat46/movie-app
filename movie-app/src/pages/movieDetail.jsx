@@ -55,7 +55,7 @@ function MovieDetail() {
                 <div className="content-detail">
                     <div className="poster-area">
                         <img className="movie-poster w-100" src={`https://image.tmdb.org/t/p/original/${movieDetail.poster_path}`} alt='movie'></img>
-                        <Link to={`/watch/${id}`} className="play-btn">Watch</Link>
+                        <Link to={`/watch/${id}/${movieDetail.title}`} className="play-btn">Watch</Link>
                     </div>
                     <div className="detail-area">
                         <h1 className="detail-name text-white">{movieDetail.title}</h1>
@@ -66,7 +66,7 @@ function MovieDetail() {
                             <span className="infor">Release date: {movieDetail.release_date}</span>
                             <span className="infor">Genre:
                                 {movieDetail.genres.map((genre, index) => (
-                                    <a className="genre" href="/movie">{genre.name}</a>
+                                    <a className="genre" href="/genres">{genre.name}</a>
                                 ))}
                             </span>
                         </div>

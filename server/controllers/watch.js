@@ -21,25 +21,27 @@ const loadSource = async (req, res) => {
 const updateSource = (req, res) => {
     let movieId = req.body.id;
     let URL = req.body.sourceURL;
+    let name = req.body.name;
     const values = [
         movieId,
         "completed",
-        URL
+        URL,
+        name
     ]
-    const query = `insert into movie_app.movies (id, status, source_url) values (?);`;
+    const query = `insert into movie_app.movies (id, status, source_url, movie_name) values (?);`;
     connection.query(query, [values], (err, data) => {
-        if(err) { 
+        if (err) {
             return res.json("Error when insert data in dtb");
         }
         return res.json("Update source movie successfully");
-      })
+    })
 }
 
 const loadComments = (req, res) => {
     let movieId = req.params.id;
     const query = `SELECT comments.id, user_id, content, created, email FROM movie_app.comments join movie_app.users where user_id = users.id and movie_id = "${movieId}"`;
     connection.query(query, (err, data) => {
-        if(err) console.log(err);
+        if (err) console.log(err);
         else {
             res.json(data);
         }
@@ -50,14 +52,14 @@ const updateComment = (req, res) => {
     let values = req.body;
     const query = `insert into movie_app.comments (user_id, movie_id, content) values ("${values.user_id}", "${values.movie_id}", "${values.content}");`;
     connection.query(query, (err, data) => {
-        if(err) { 
+        if (err) {
             return console.log("Error when insert data in dtb");
         }
-      })
+    })
     const query2 = `SELECT user_id, content, created, email FROM movie_app.comments join movie_app.users where user_id = users.id 
     and movie_id = "${values.movie_id}" and content = "${values.content}" and user_id = "${values.user_id}" order by comments.created limit 1`;
     connection.query(query2, (err, data) => {
-        if(err) {
+        if (err) {
             return console.log("Error when load comment")
         }
         else return res.json(data);
@@ -67,12 +69,36 @@ const updateComment = (req, res) => {
 const deleteComment = (req, res) => {
     let values = req.body.commentId;
     const query = `DELETE FROM comments WHERE id = '${values}';`;
-    connection.query(query, (err,data) => {
-        if(err) {
+    connection.query(query, (err, data) => {
+        if (err) {
             return console.log(err);
         }
         return res.json("deleted")
     })
 }
 
-module.exports = { loadSource, updateSource, loadComments, updateComment, deleteComment }
+const addFavourite = (req, res) => {
+    let values = req.body;
+    let checked = false;
+    const checkQuery = `Select id from movies where id = "${values.movie_id}"`;
+    connection.query(checkQuery, (err, data) => {
+        if (err) {
+            console.log(err);
+        }
+        if (data.length > 0) {
+            checked = true;
+            if (checked) {
+                const query = `INSERT INTO favourite (user_id, movie_id) values ("${values.user_id}", "${values.movie_id}")`;
+                connection.query(query, (err, data) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    return res.json("Successfully add this movie to your favourite")
+                })
+            } else res.json("Trailer video can not be added to favourite list")
+        }
+    })
+
+}
+
+module.exports = { loadSource, updateSource, loadComments, updateComment, deleteComment, addFavourite }

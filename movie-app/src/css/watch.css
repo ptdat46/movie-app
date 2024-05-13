@@ -10,6 +10,13 @@ iframe {
     height: 100vh;
 }
 
+.favourite-alert {
+    overflow: hidden;
+    margin: 0;
+    font-size: 0.7rem;
+    margin-top: 0.3rem;
+    line-height: 1rem;
+}
 hr {
     color: white !important;
 }
