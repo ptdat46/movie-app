@@ -4,6 +4,7 @@ import axios from '../api/posts'
 import "../css/admin.css"
 import UserCard from '../components/admin.userCard';
 import Navbar from "../components/navbar";
+import Auth from "../components/auth"
 import Search from "./search";
 
 function Admin() {
@@ -21,6 +22,7 @@ function Admin() {
 
     return (
         <div className="admin-main-div">
+            <Auth/>
             <Navbar/>
             <div className="body">
                 <div className="user-content bg-dark">

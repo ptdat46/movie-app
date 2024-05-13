@@ -21,6 +21,12 @@ function Account() {
             .catch(err => console.log(err))
     }, [])
 
+    const handleLogout = () => {
+        localStorage.clear();
+        history.push('/');
+        window.location.reload();
+    }
+ 
     return (
         <div className="account-main-div">
             <Auth />
@@ -46,7 +52,7 @@ function Account() {
                         }
                     </tbody>
                 </table>
-                <button className="btn btn-danger my-2">Log out</button>
+                <button className="btn btn-danger my-2" onClick={handleLogout}>Log out</button>
             </div>
         </div>
     )
