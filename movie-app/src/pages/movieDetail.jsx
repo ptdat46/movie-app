@@ -7,6 +7,7 @@ import '../css/movieDetail.css'
 import ActorCard from '../components/actorCard'
 import MoviesList from "../components/moviesList";
 import Auth from "../components/auth";
+import Navbar from "../components/navbar";
 
 function MovieDetail() {
     const { id } = useParams();
@@ -49,20 +50,7 @@ function MovieDetail() {
             }}>
                 <div style={overlayStyle}></div>
             </div>}
-            <nav className="header navbar navbar-dark bg-dark p-3 justify-content-start">
-                <a className="navbar-brand text-danger" href="/movie">FilmNew</a>
-                <ul className="nav nav-pills">
-                    <li className="nav-item">
-                        <a className="nav-link text-light" href="/search">Search</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link text-light" href="/movie">Genres</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link text-light" href="/setting">Account</a>
-                    </li>
-                </ul>
-            </nav>
+            <Navbar/>
             {!!movieDetail &&
                 <div className="content-detail">
                     <div className="poster-area">

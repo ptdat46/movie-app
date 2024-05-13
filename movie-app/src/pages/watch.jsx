@@ -7,6 +7,7 @@ import '../css/watch.css'
 import CommentCard from "../components/commentCard";
 import CommentsList from "../components/commentsList";
 import Auth from "../components/auth";
+import Navbar from "../components/navbar";
 
 function Watch() {
     const { id } = useParams();
@@ -16,7 +17,7 @@ function Watch() {
     const [comment, setComment] = useState("");
     var isAdmin = false;
 
-    if (localStorage.getItem("user") === "admin@admin.com") { isAdmin = true }
+    if (localStorage.getItem("is_admin") === "1") { isAdmin = true }
     useEffect(() => {
         axios.post(`/watch/${id}`, { id })
             .then(res => setSourceId(res.data))
@@ -49,24 +50,12 @@ function Watch() {
                 setCommentsList([...commentsList, ...res.data])               
             })
             .catch(err => console.log(err))
+        setComment("");
     }
     return (
         <div className="movie-watch">
             <Auth />
-            <nav className="header navbar navbar-dark bg-dark p-3 justify-content-start mb-3">
-                <a className="navbar-brand text-danger" href="/movie">FilmNew</a>
-                <ul className="nav nav-pills">
-                    <li className="nav-item">
-                        <a className="nav-link text-light" href="/search">Search</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link text-light" href="/movie">Genres</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link text-light" href="/setting">Account</a>
-                    </li>
-                </ul>
-            </nav>
+            <Navbar/>
             <iframe className="video"
                 title='Youtube player'
                 allowfullscreen="allowfullscreen"
@@ -76,21 +65,19 @@ function Watch() {
                 webkitallowfullscreen="webkitallowfullscreen"
                 src={`${source}`}>
             </iframe>
+            <div>Add to favourite</div>
             <div className="comment">
                 <hr />
                 <div className="comment-title text-white fw-semibold p-1">Comment</div>
                 <div className="comment-area d-flex align-items-center mx-2 flex-column">
-                    <CommentsList list={commentsList} />
+                    <CommentsList list={commentsList} id = {id}/>
                     <div className="comment-input my-2">
                         <div className="input-area">
                             <textarea placeholder="Comment here" maxLength="380" rows="4"
+                            value={comment} 
                             onChange={(event) => setComment(event.target.value)}></textarea>
                             <input className="send-btn bg-danger text-white border-0" type="submit" name="send" value="Send" 
                             onClick={handleSendComment}/>
-                        </div>
-                        <div className="text-danger">Like this movie?
-                            <div>Like</div>
-                            <div>Dislike</div>
                         </div>
                     </div>
                 </div>

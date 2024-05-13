@@ -9,6 +9,7 @@ import MovieDetail from "./pages/movieDetail";
 import Watch from "./pages/watch";
 import Search from "./pages/search";
 import Admin from "./pages/admin";
+import Genres from "./pages/genres";
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/watch/:id" element={<Watch />} />
           <Route path="/search" element={<Search />} />
           <Route path="/admin" element={<Admin/>} />
+          <Route path="/genres" element={<Genres/>}/>
         </Routes>
     </div>
   );

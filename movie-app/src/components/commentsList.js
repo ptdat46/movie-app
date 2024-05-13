@@ -1,11 +1,11 @@
 import CommentCard from './commentCard';
 
 const CommentsList = (props) => {
-    const { list } = props;
+    const { id, list } = props;
     return (
-        <div>
+        <div className='w-100'>
             {list && list.map((comment, index) => (
-                    <CommentCard email = {comment.email} content = {comment.content} created = {comment.created} key = {index}/>
+                    <CommentCard id = {id} email = {comment.email} content = {comment.content} created = {comment.created} commentId = {comment.id} key = {index}/>
                 ))}
         </div>
     )

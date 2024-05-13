@@ -16,7 +16,6 @@ function Home() {
         rePassword: rePassword,
         isLoginForm: isLoginForm
     }
-    const [loginSuccess, setLoginSuccess] = useState(false);
     const isValidForm = () => {
         if (!email) {
             return false;
@@ -33,6 +32,9 @@ function Home() {
 
     const toggleLoginForm = () => {
         setLoginForm(!isLoginForm);
+        setEmail("");
+        setPassword("");
+        setRePassword("");
     }
 
 
@@ -43,11 +45,12 @@ function Home() {
             axios.post('/', user)
             .then(res => {
                 if (res.data[0].email != undefined) {
-                    setLoginSuccess(true);
-                    history.push('/movie');
-                    window.location.reload();
                     localStorage.setItem("user", user.email);
                     localStorage.setItem("user_id", res.data[0].id)
+                    localStorage.setItem("is_admin", res.data[0].is_admin)
+                    if(localStorage.getItem("is_admin") == "0") history.push('/movie')
+                        else history.push('/admin')
+                    window.location.reload();
                 } else {
                     alert(res.data);
                 }
@@ -55,6 +58,9 @@ function Home() {
             )
             .catch(err => console.log(err))
         } else alert("Invalid input!")
+        setEmail("");
+        setPassword("");
+        setRePassword("");
     }
 
 

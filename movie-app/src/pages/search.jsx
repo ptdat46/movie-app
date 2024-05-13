@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import '../css/search.css'
 import MoviesList from "../components/moviesList";
 import Auth from "../components/auth";
+import Navbar from "../components/navbar";
 
 function Search() {
     const [searchQuery, setSearchQuery] = useState("");
@@ -17,20 +18,7 @@ function Search() {
     return (
         <div className="main-search">
             <Auth/>
-            <nav className="header navbar navbar-dark bg-dark p-3 justify-content-start">
-                <a className="navbar-brand text-danger" href="/movie">FilmNew</a>
-                <ul className="nav nav-pills">
-                    <li className="nav-item">
-                        <a className="nav-link text-light" href="/search">Search</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link text-light" href="/movie">Genres</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link text-light" href="/account">Account</a>
-                    </li>
-                </ul>
-            </nav>
+            <Navbar/>
             <div className="search-box">
                 <input class="search-input me-1" type="search" placeholder="Search for movie" aria-label="Search"
                     value={searchQuery} onChange = {(event) => setSearchQuery(event.target.value)}/>

@@ -10,7 +10,7 @@ const getPopularMovies = async () => {
 
 getPopularMovies()
   .then(data =>
-    router.get("/", function (req, res) {
+    router.get("/popular", function (req, res) {
       res.json(data.results);
     })
   );
@@ -30,6 +30,11 @@ router.post("/:id", async function (req, res) {
   };
 
   res.json(combinedData);
+})
+
+router.get('/top-rated', async (req,res) => {
+    const data = await axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=e9e9d8da18ae29fc430845952232787c&language=en-US&page=1`)
+    res.json(data.data);
 })
 
 module.exports = router;
