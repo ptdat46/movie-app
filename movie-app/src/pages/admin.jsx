@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from '../api/posts'
 import "../css/admin.css"
 import UserCard from '../components/admin.userCard';
+import Navbar from "../components/navbar";
 import Search from "./search";
 
 function Admin() {
@@ -10,11 +11,6 @@ function Admin() {
         cursor: "pointer"
     }
     const [usersList, setUsersList] = useState(undefined);
-    const [isUserForm, setUserForm] = useState(true);
-
-    const toggleForm = () => {
-        setUserForm(!isUserForm);
-    }
     useEffect(() => {
         axios.get("/admin")
             .then(data => {
@@ -25,19 +21,9 @@ function Admin() {
 
     return (
         <div className="admin-main-div">
-            <nav className="admin-header navbar navbar-dark bg-dark p-3 justify-content-start">
-                <a className="navbar-brand text-danger" href="/admin">Admin</a>
-                <ul className="nav nav-pills">
-                    <li className={`nav-item user-comp ${isUserForm ? "active" : ""}`} onClick={toggleForm}>
-                        <a className="nav-link text-light">User</a>
-                    </li>
-                    <li className={`nav-item movie-comp ${!isUserForm ? "active" : ""}`} onClick={toggleForm}>
-                        <a className="nav-link text-light ">Search</a>
-                    </li>
-                </ul>
-            </nav>
+            <Navbar/>
             <div className="body">
-                {isUserForm && <div className="user-content bg-dark">
+                <div className="user-content bg-dark">
                     <table class="table table-dark table-hover">
                         <thead>
                             <tr>
@@ -54,12 +40,7 @@ function Admin() {
                             ))}
                         </tbody>
                     </table>
-                </div>}
-                {!isUserForm &&
-                    <div className="movie-content bg-dark">
-                        <Search/>
-                    </div>
-                }
+                </div>
             </div>
         </div>
     )
