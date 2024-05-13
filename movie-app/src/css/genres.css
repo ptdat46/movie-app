@@ -16,6 +16,7 @@
     flex-direction: column;
     min-width: 450px;
     align-items: center;
+    margin-top: 2px;
 }
 
 .genres-group {
