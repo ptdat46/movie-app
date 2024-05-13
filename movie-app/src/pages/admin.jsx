@@ -6,6 +6,9 @@ import UserCard from '../components/admin.userCard';
 import Navbar from "../components/navbar";
 import Auth from "../components/auth"
 import Search from "./search";
+import { Outlet } from "react-router-dom";
+import { history } from "../config/history";
+import { Link } from "react-router-dom";
 
 function Admin() {
     const img = {
@@ -19,6 +22,12 @@ function Admin() {
             })
             .catch(err => console.log(err))
     }, [])
+
+    const is_admin = localStorage.getItem("is_admin");
+    if(is_admin == "0") {
+        history.push("/movie");
+        window.location.reload();
+    }
 
     return (
         <div className="admin-main-div">
