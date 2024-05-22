@@ -26,6 +26,15 @@ function Account() {
         history.push('/');
         window.location.reload();
     }
+
+    const deleteFav = (id) => {
+        axios.post("/account/delete-fav", { user_id, id })
+            .then(res => {
+                alert(res.data);
+                window.location.reload();
+            })
+            .catch(err => console.log(err))
+    }
  
     return (
         <div className="account-main-div">
@@ -39,14 +48,16 @@ function Account() {
                         <tr>
                             <th scope="col">Movie Name</th>
                             <th scope="col">Movie ID</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         {!!favourite &&
                             favourite.map((movie, index) => (
                                 <tr>
-                                    <th scope="row"><a className="text-decoration-none"href={`/movie/${movie.movie_id}`}>{movie.movie_name}</a></th>
+                                    <th scope="row"><a className="text-decoration-none text-white"href={`/movie/${movie.movie_id}`}>{movie.movie_name}</a></th>
                                     <td>{movie.movie_id}</td>
+                                    <td><button className="btn btn-danger mt-0" onClick={() => deleteFav(movie.movie_id)}>Delete</button></td>
                                 </tr>
                             ))
                         }
