@@ -42,3 +42,14 @@
     padding: 0.2rem 1.7rem;
     transition: 0.2s linear;
 }
+
+.pagination > .page-item > .page-link{
+    color: #cd314b;
+    border: 1px solid #cd314b !important;
+    background-color: rgba(24, 42, 60, 0.9);
+}
+
+.pagination > .active > .page-link {
+    background-color: #cd314b;
+    color: white;
+}
