@@ -12,4 +12,14 @@ router.post('/', (req, res) => {
     })
 })
 
+router.post('/delete-fav', (req, res) => {
+    const user_id = req.body.user_id;
+    const movie_id = req.body.id;
+    const query = `DELETE FROM movie_app.favourite WHERE user_id = "${user_id}" AND movie_id = "${movie_id}"`
+    connection.query(query, (err, data) => {
+        if(err) res.json(err);
+        else res.json("Remove succesfully");
+    })
+})
+
 module.exports = router;

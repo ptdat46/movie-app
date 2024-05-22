@@ -49,7 +49,7 @@ function Home() {
                     localStorage.setItem("user_id", res.data[0].id)
                     localStorage.setItem("is_admin", res.data[0].is_admin)
                     if(localStorage.getItem("is_admin") == "0") history.push('/movie')
-                        else history.push('/admin')
+                        else history.push('/movie')
                     window.location.reload();
                 } else {
                     alert(res.data);

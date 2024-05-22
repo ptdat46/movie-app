@@ -14,13 +14,16 @@ function MovieDetail() {
     const [movieDetail, setMovieDetail] = useState(undefined);
     const [actors, setActors] = useState(undefined);
     const [similarMovies, setSimilarMovies] = useState(undefined);
+    const [liked, setLiked] = useState(false);
+    const user_id = localStorage.getItem("user_id");
 
     useEffect(() => {
-        axios.post(`/movie/${id}`, { id })
+        axios.post(`/movie/${id}`, { id, user_id })
             .then(res => {
                 setMovieDetail(res.data.detail)
-                setActors(res.data.actors.cast.slice(0,5))
+                setActors(res.data.actors.cast.slice(0, 5))
                 setSimilarMovies(res.data.similar.results)
+                if (res.data.liked.user_id == user_id && res.data.liked.movie_id == id) setLiked(true);
             })
             .catch(error => console.log(error))
     }, []);
@@ -35,9 +38,18 @@ function MovieDetail() {
         zIndex: "-2", // Đảm bảo lớp phủ nằm dưới nội dung
     };
 
+    const deleteFav = () => {
+        axios.post("/account/delete-fav", { user_id, id })
+            .then(res => {
+                alert(res.data);
+                window.location.reload();
+            })
+            .catch(err => console.log(err))
+    }
+
     return (
         <div>
-            <Auth/>
+            <Auth />
             {!!movieDetail && <div style={{
                 backgroundImage: `url(https://image.tmdb.org/t/p/original/${movieDetail.backdrop_path})`,
                 top: "0",
@@ -50,7 +62,7 @@ function MovieDetail() {
             }}>
                 <div style={overlayStyle}></div>
             </div>}
-            <Navbar/>
+            <Navbar />
             {!!movieDetail &&
                 <div className="content-detail">
                     <div className="poster-area">
@@ -59,7 +71,21 @@ function MovieDetail() {
                     </div>
                     <div className="detail-area">
                         <h1 className="detail-name text-white">{movieDetail.title}</h1>
-                        <div className="detail-information mt-3">
+                        {liked &&
+                            <div className="dropdown-fav">
+                                <button type="button" class="like-btn btn btn-secondary mt-0 dropdown-toggle d-flex align-items-center"
+                                    id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
+                                >
+                                    <img className="like-icon" src={require("../public/heart.png")} />
+                                    Favourite Movie
+                                </button>
+                                <ul className="dropdown-menu bg-secondary text-white" aria-labelledby="dropdownMenuButton1">
+                                    <li><a className="dropdown-item text-white" href="/account">Go to Favourite List</a></li>
+                                    <li><button className="dropdown-item text-white" onClick={deleteFav}>Delete this movie from Favourite List</button></li>
+                                </ul>
+                            </div>
+                        }
+                        <div className="detail-information mt-1">
                             <span className="infor">{movieDetail.runtime} minutes</span>
                             <span className="infor">Nation: {movieDetail.origin_country}</span>
                             <span className="infor">Language: {movieDetail.spoken_languages[0].english_name}</span>
@@ -74,16 +100,16 @@ function MovieDetail() {
                         <div className="actors">
                             <span className="fw-semibold">Actors</span>
                             {!!actors && !!actors.map &&
-                            <div className="actors-cards">
-                                {actors.map((actor, index) => (
-                                    <ActorCard actor = {actor} key = {index}/>
-                                ))}
-                            </div>
+                                <div className="actors-cards">
+                                    {actors.map((actor, index) => (
+                                        <ActorCard actor={actor} key={index} />
+                                    ))}
+                                </div>
                             }
                         </div>
                         <div className="similar">
                             <div className="fw-semibold">Similar</div>
-                            <MoviesList title= "similar" list = {similarMovies.slice(0,4)}/>
+                            <MoviesList title="similar" list={similarMovies.slice(0, 4)} />
                         </div>
                     </div>
                 </div>

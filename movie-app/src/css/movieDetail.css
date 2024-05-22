@@ -62,7 +62,24 @@ span {
 .genre:hover {
     background-color: rgba(127, 127, 127, 0.8);
 }
- 
+
+.like-btn {
+    height: 2rem;
+    overflow: hidden;
+    padding: 2px 5px !important;
+    text-align: center;
+    color: white !important;
+}
+
+.dropdown-fav .dropdown-menu .dropdown-item:hover {
+    background-color: rgba(0,0,0, 0.5);
+}
+.like-icon {
+    margin-right: 0.4rem;
+    width: 26px;
+    background-size: cover;
+}
+
 .overview {
     font-size: 1.2rem;
 }
@@ -83,6 +100,7 @@ span {
 .play-btn:hover {
     background-color: #a11b31;
 }
+
 .actors {
     width: 100%;
     margin: 1.3rem 0;
